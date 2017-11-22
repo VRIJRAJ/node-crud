@@ -1,1 +1,8 @@
 <h1> Index page type shit</h1>
+
+<% blogs.forEach((blog) => { %>
+  <div><%= blog.title %></div>
+  <img src="<%= blog.image %>" />
+  <div><%= blog.created %></div>
+  <p><%= blog.body %> </p>
+<% }) %>
