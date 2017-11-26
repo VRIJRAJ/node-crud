@@ -24,10 +24,12 @@ let Blog = mongoose.model("Blog", blogSchema);
 //     body: 'this is my body from my post'
 // });
 
+// root route redirect user back to /blogs
 app.get("/", (req, res) => {
     res.redirect("/blogs");
 })
 
+// route to show all of the blogs within the db
 app.get("/blogs", (req, res) => {
     Blog.find({}, (err, blogs) => {
         if(err) {
@@ -37,6 +39,24 @@ app.get("/blogs", (req, res) => {
             res.render("index", {blogs:blogs})
         }
     })
+});
+
+app.post("/blogs", (req,res) => {
+   Blog.create(req.body.blog, (err, newPost) => {
+       if(err) {
+           console.log('error');
+           res.redirect('');
+           // need to create error page for this..
+       }
+       else {
+           res.redirect('/blogs');
+       }
+   })
+});
+
+// form to create new post
+app.get("/blogs/new", (req, res) => {
+    res.render("new");
 })
 
 app.listen(3000, () => {

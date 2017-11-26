@@ -6,3 +6,11 @@ i.code.icon {
 .header-section {
     margin-top: 50px;
 }
+
+.container.main {
+    margin-top: 50px;
+}
+
+.ui.text.container {
+    margin-top: 5em;
+}
