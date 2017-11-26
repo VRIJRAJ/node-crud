@@ -1,8 +1,10 @@
-<h1> Index page type shit</h1>
+<% include partials/header %>
 
 <% blogs.forEach((blog) => { %>
-  <div><%= blog.title %></div>
+  <div class="header-section"><%= blog.title %></div>
   <img src="<%= blog.image %>" />
   <div><%= blog.created %></div>
   <p><%= blog.body %> </p>
 <% }) %>
+
+<% include partials/footer %>
