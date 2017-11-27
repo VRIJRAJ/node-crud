@@ -59,6 +59,7 @@ app.get("/blogs/new", (req, res) => {
     res.render("new");
 });
 
+// show route
 app.get("/blogs/:id", (req, res) => {
     console.log(req.params.id);
 
@@ -73,6 +74,7 @@ app.get("/blogs/:id", (req, res) => {
     })
 });
 
+// edit route
 app.get("/blogs/:id/edit", (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
         if(err) {
@@ -85,6 +87,12 @@ app.get("/blogs/:id/edit", (req, res) => {
     });
 });
 
+// put route for edit
+app.put("/blogs/:id", (req, res) => {
+    res.send("update route");
+})
+
+// wildcard route
 app.get("*", (req, res) => {
     res.render("error");
 })

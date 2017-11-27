@@ -1,11 +1,16 @@
 <% include partials/header %>
 
-<% blogs.forEach((blog) => { %>
-  <div class="header-section"><%= blog.title %></div>
-  <img height="500" width="" src="<%= blog.image %>" />
-  <span><%= blog.created.toDateString() %></span>
-  <p><%= blog.body.substring(0,50) %> ... </p>
-  <a href="/blogs/<%= blog._id%>">Read more</a
+  <% blogs.forEach((blog) => { %>
+    <div class="containers">
+      <div class="header-section">
+       <h1> <%= blog.title %> </h1>
+      </div>
+      <img height="100%" width="50%" src="<%= blog.image %>" />
+      <div><%= blog.created.toDateString() %></div><br /> <br />
+      <p>
+        <%= blog.body.substring(0,50) %> ... </p>
+      <a href="/blogs/<%= blog._id%>">Read more</a
+  </div>
 <% }) %>
 
 <% include partials/footer %>
