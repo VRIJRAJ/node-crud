@@ -2,10 +2,12 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var methodOverride = require('method-override');
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 mongoose.connect('mongodb://localhost/blog_db');
 
@@ -89,14 +91,23 @@ app.get("/blogs/:id/edit", (req, res) => {
 
 // put route for edit
 app.put("/blogs/:id", (req, res) => {
-    res.send("update route");
-})
+
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+        if(err) {
+            console.log('err', error);
+            res.render("error");
+        }
+        else {
+            res.redirect(`/blogs/${req.params.id}`);
+        }
+    });
+});
 
 // wildcard route
 app.get("*", (req, res) => {
     res.render("error");
-})
+});
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");
-})
+});
