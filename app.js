@@ -103,6 +103,18 @@ app.put("/blogs/:id", (req, res) => {
     });
 });
 
+app.delete("/blogs/:id", (req, res) => {
+    Blog.findByIdAndRemove(req.params.id, (err) => {
+        if(err) {
+            console.log('error', err);
+            res.render("error", {err: err});
+        }
+        else {
+            res.redirect("/blogs");
+        }
+    });
+});
+
 // wildcard route
 app.get("*", (req, res) => {
     res.render("error");

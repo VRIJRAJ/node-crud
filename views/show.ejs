@@ -1,6 +1,8 @@
 <% include partials/header %>
     <div class="ui main text container segment">
-        <div class="ui huge header"> <%= blog.title %> </div>
+        <div class="ui huge header">
+            <%= blog.title %>
+        </div>
         <div class="ui top attatched">
             <div class="item">
                 <img height="300" width="100%" src="<%= blog.image %> " alt="Sorry we could not render an image for you">
@@ -8,9 +10,15 @@
                     <span><%= blog.created.toDateString() %></span>
                 </div>
                 <div class="description">
-                    <p><%= blog.body %></p>
+                    <p>
+                        <%= blog.body %>
+                    </p>
                 </div>
             </div>
         </div>
+        <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+            <button class="ui basic red button">Delete</button>
+        </form>
     </div>
+
     <% include partials/footer %>
